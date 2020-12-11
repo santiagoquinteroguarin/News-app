@@ -2,7 +2,7 @@ import React from 'react';
 import styles from './Form.module.css';
 import useSelect from '../hooks/useSelect';
 
-const Form = () => {
+const Form = ({setSavedCategory}) => {
 
     const OPTIONS = [
         {value: 'general', label: 'General'},
@@ -17,10 +17,17 @@ const Form = () => {
     // Utilizar custom hook
     const [category, SelectNews] = useSelect('technology', OPTIONS);
 
+    // submit al form, pasar categoria a app.js
+    const searchNews = e => {
+        e.preventDefault();
+
+        setSavedCategory(category);
+    }
+
     return (
         <div className={`row ${styles.search}`}>
             <div className="col s12 m8 offset-m2">
-                <form>
+                <form onSubmit={searchNews}>
                     <h2 className={styles.heading}>Encuentra Noticias por Categoría</h2>
 
                     <SelectNews />
@@ -37,5 +44,5 @@ const Form = () => {
         </div>
     );
 }
-// f9608d52e51848a09497e8f83985dc88
+
 export default Form;
