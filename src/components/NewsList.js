@@ -5,7 +5,10 @@ const NewsList = ({news}) => {
     return (
         <div className="row">
             {news.map(newReport => (
-                <New />
+                <New 
+                    key={newReport.url}
+                    newReport={newReport}
+                />
             ))}
         </div>
     );
